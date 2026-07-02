@@ -1,0 +1,14 @@
+{
+  "business": "Ravintolalaiva m/s Bruno",
+  "type": "Restaurant",
+  "slug": "ravintolalaiva-ms-bruno",
+  "files": [
+    "index.html",
+    "style.css",
+    "script.js",
+    "about.html",
+    "contact.html",
+    "menu.html"
+  ],
+  "model": "llama-3.3-70b-versatile"
+}
