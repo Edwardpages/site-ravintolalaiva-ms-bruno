@@ -83,149 +83,292 @@
     <div class="container">
       <ul class="nav-links">
         <li><a href="#lounas">Lounas</a></li>
-        <li><a href="#illallinen">Illallinen</a></li>
-        <li><a href="#brunssi">Brunssi</a></li>
-        <li><a href="#yksityistilaisuudet">Yksityistilaisuudet</a></li>
-        <li><a href="#telakkavierailut">Telakkavierailut</a></li>
+        <li><a href="#salaatit">Salaatit &amp; Leiv&auml;t</a></li>
+        <li><a href="#paaruuat">P&auml;&auml;ruuat</a></li>
+        <li><a href="#lapulle">Lapulle</a></li>
+        <li><a href="#jalkiruuat">J&auml;lkiruuat</a></li>
+        <li><a href="#juomat">Juomat</a></li>
       </ul>
     </div>
   </section>
 
+<style>
+.menu-section { max-width: 800px; margin: 0 auto; }
+.menu-item { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px dotted rgba(201,168,76,.3); padding: 14px 0; gap: 16px; }
+.menu-item-info { flex: 1; }
+.menu-item-name { font-size: 1.05rem; font-weight: 700; color: #c9a84c; margin: 0 0 4px; }
+.menu-item-desc { font-size: .88rem; opacity: .78; margin: 0; line-height: 1.45; }
+.menu-item-price { font-size: 1rem; font-weight: 700; white-space: nowrap; color: #c9a84c; }
+.menu-category-label { display: inline-block; background: rgba(201,168,76,.15); border: 1px solid rgba(201,168,76,.4); border-radius: 4px; font-size: .72rem; font-weight: 700; letter-spacing: .08em; padding: 2px 8px; margin-left: 8px; vertical-align: middle; color: #c9a84c; text-transform: uppercase; }
+.menu-note { background: rgba(201,168,76,.08); border-left: 3px solid #c9a84c; padding: 14px 20px; border-radius: 4px; margin: 0 0 24px; font-size: .9rem; }
+.menu-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+@media(max-width:640px){ .menu-cols { grid-template-columns: 1fr; } }
+</style>
+
   <!-- Lounas -->
   <section class="section reveal" id="lounas">
     <div class="container">
-      <h2>Lounas</h2>
-      <div class="grid-3">
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg/v1/fill/w_1600,h_900,al_c,q_85,usm_0.33_1.00_0.00/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg" alt="Kalaruoka">
-          <h3>Kermainen lohi- ja tillikastike</h3>
-          <p>Uudenvuodenaikainen lohi, kerma, tilli ja valikoima paikallisia kasviksia.</p>
-          <p class="text"><strong>Hinta: €12,90</strong></p>
-        </article>
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/bdd1a3_d1b7149ac6864934a373090408dc41ca~mv2.jpg/v1/fill/w_700,h_500,al_c,q_85,usm_0.33_1.00_0.00/bdd1a3_d1b7149ac6864934a373090408dc41ca~mv2.jpg" alt="Kasviskeitto">
-          <h3>Kesäinen kasviskeitto</h3>
-          <p>Kevyet kesäkasvit, bataatti, paprika ja yrttinen liemikuori.</p>
-          <p class="text"><strong>Hinta: €9,50</strong></p>
-        </article>
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/11062b_95d34f15761e4114a57b17823228948ef000.jpg/v1/fill/w_400,h_280,al_c,q_85,usm_0.33_1.00_0.00/11062b_95d34f15761e4114a57b17823228948ef000.jpg" alt="Pasta">
-          <h3>Itämerellinen pasta</h3>
-          <p>Itämerellinen mustekala, valkosipuli, sitruunainen kerma ja tagliatelle.</p>
-          <p class="text"><strong>Hinta: €13,40</strong></p>
-        </article>
+      <div class="menu-section">
+        <h2>Lounas</h2>
+        <div class="menu-note">
+          Viikoittain vaihtuva lounasmenu &middot; Ma&ndash;Pe 11:00&ndash;14:00 &middot; noin 12,90 &euro;<br>
+          Tarkista viikon menu somesta tai soittamalla <a href="tel:025366539">025 366 539</a>.
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Vuohenjuustosalaatti <span class="menu-category-label">VL G</span></p>
+            <p class="menu-item-desc">Paahdettua vuohenjuustoa, salaattia, paahdettuja p&auml;hkin&ouml;it&auml; ja hunajasiirappia.</p>
+          </div>
+          <span class="menu-item-price">12,90 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Kalkkunapy&ouml;rykät <span class="menu-category-label">L G</span></p>
+            <p class="menu-item-desc">Kotitekoisia kalkkunapy&ouml;rykkeit&auml;, perunamuusia ja puolukkasurvosta.</p>
+          </div>
+          <span class="menu-item-price">12,90 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Pannukakku mustikkasurvoksella <span class="menu-category-label">L G</span></p>
+            <p class="menu-item-desc">Uunissa paistettu pannukakku, mustikkasurvos ja kermavaahto.</p>
+          </div>
+          <span class="menu-item-price">12,90 &euro;</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Illallinen -->
-  <section class="section reveal" id="illallinen">
+  <!-- Salaatit ja Leiv&auml;t -->
+  <section class="section reveal light" id="salaatit">
     <div class="container">
-      <h2>Illallinen</h2>
-      <div class="grid-3">
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/bdd1a3_d1b7149ac6864934a373090408dc41ca~mv2.jpg/v1/fill/w_400,h_280,al_t,q_85,usm_0.33_1.00_0.00/bdd1a3_d1b7149ac6864934a373090408dc41ca~mv2.jpg" alt="Pihvi">
-          <h3>Paistettu naudan sisäfilee</h3>
-          <p>Mehevä sisäfilee, briejuusto, karpalo-kastike ja perunamuusi.</p>
-          <p class="text"><strong>Hinta: €24,90</strong></p>
-        </article>
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg/v1/fill/w_400,h_280,al_b,q_85,usm_0.33_1.00_0.00/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg" alt="Kalkkuna">
-          <h3>Yrttinen kalkkunarulla</h3>
-          <p>Kalkkunarulla, timjami, paahdetut juurekset ja punaviinikastike.</p>
-          <p class="text"><strong>Hinta: €22,00</strong></p>
-        </article>
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/11062b_95d34f15761e4114a57b17823228948ef000.jpg/v1/fill/w_400,h_280,al_t,q_85,usm_0.33_1.00_0.00/11062b_95d34f15761e4114a57b17823228948ef000.jpg" alt="Kasvispasta">
-          <h3>Vihreä risotto</h3>
-          <p>Vihreä risotto, parsakaali, pinaatti, parmesaani ja sitruunan raikkaus.</p>
-          <p class="text"><strong>Hinta: €19,50</strong></p>
-        </article>
+      <div class="menu-section">
+        <h2>Salaatit &amp; Leiv&auml;t</h2>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Brunon Caesarsalaatti <span class="menu-category-label">L</span></p>
+            <p class="menu-item-desc">Paahdettua salaattisyd&auml;nt&auml;, parmesaania, caesar-kastike, krutoneita. Anjovisella 11 &euro; / kalkkunalla 13 &euro;.</p>
+          </div>
+          <span class="menu-item-price">11&ndash;13 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Vuohenjuustosalaatti <span class="menu-category-label">VL G</span></p>
+            <p class="menu-item-desc">Paistettua vuohenjuustoa, rucola, tomaatti, p&auml;hkin&auml;t ja balsamico-vinaigrette.</p>
+          </div>
+          <span class="menu-item-price">17 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Mets&auml;sienisalaatti <span class="menu-category-label">VL G</span></p>
+            <p class="menu-item-desc">Savustettuja mets&auml;sieni&auml;, parmesaania, tuoretta pinaattia ja valkosipuli&ouml;ljy&auml;.</p>
+          </div>
+          <span class="menu-item-price">17 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Oskarinleip&auml;</p>
+            <p class="menu-item-desc">Paahdettua leip&auml;&auml;, lihasuikaletta, salaattia ja erikoiskastiketta.</p>
+          </div>
+          <span class="menu-item-price">10 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Kanaleip&auml;</p>
+            <p class="menu-item-desc">Paahdettua vuoka-leip&auml;&auml;, kanafilee, salaattia, tomaattia ja aiolia.</p>
+          </div>
+          <span class="menu-item-price">10 &euro;</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Brunssi -->
-  <section class="section reveal" id="brunssi">
+  <!-- P&auml;&auml;ruuat -->
+  <section class="section reveal" id="paaruuat">
     <div class="container">
-      <h2>Brunssi</h2>
-      <div class="grid-3">
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/bdd1a3_d1b7149ac6864934a373090408dc41ca~mv2.jpg/v1/fill/w_400,h_280,al_b,q_85,usm_0.33_1.00_0.00/bdd1a3_d1b7149ac6864934a373090408dc41ca~mv2.jpg" alt="Munakokkelit">
-          <h3>Munakokkelit ja savulohi</h3>
-          <p>Pehmeät munakokkelit, savulohiviipaleet, ruisleipä ja tilli.</p>
-          <p class="text"><strong>Hinta: €14,90</strong></p>
-        </article>
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,usm_0.33_1.00_0.00/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg" alt="Pannukakku">
-          <h3>Marjainen pannukakku</h3>
-          <p>Tuoreet marjat, vaniljakastike ja hunaja.</p>
-          <p class="text"><strong>Hinta: €12,50</strong></p>
-        </article>
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/bdd1a3_d1b7149ac6864934a373090408dc41ca~mv2.jpg/v1/fill/w_600,h_400,al_t,q_85,usm_0.33_1.00_0.00/bdd1a3_d1b7149ac6864934a373090408dc41ca~mv2.jpg" alt="Aamiaissalaatti">
-          <h3>Aamiaissalaatti</h3>
-          <p>Vihreä salaatti, avokado, kananmunat, fetajuusto ja sitruunavinaigrette.</p>
-          <p class="text"><strong>Hinta: €13,20</strong></p>
-        </article>
+      <div class="menu-section">
+        <h2>P&auml;&auml;ruuat</h2>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Parilloitu Lohi <span class="menu-category-label">G L</span></p>
+            <p class="menu-item-desc">Tuoretta lohifileett&auml;, perunamuusia, sitruunakastike ja sesongin kasviksia.</p>
+          </div>
+          <span class="menu-item-price">25 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Paistettua Kuhaa <span class="menu-category-label">G L</span></p>
+            <p class="menu-item-desc">Paistettua kuhaa, sitruunavoikastike, paahdetut perunat ja kasvikset.</p>
+          </div>
+          <span class="menu-item-price">28 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Laivarinleike <span class="menu-category-label">L</span></p>
+            <p class="menu-item-desc">Ohut leivitetty porsaanleike, perunamuusia, puolukkasurvosta ja suolakurkkua.</p>
+          </div>
+          <span class="menu-item-price">26 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Pippuripihvi <span class="menu-category-label">G L</span></p>
+            <p class="menu-item-desc">Naudanfileett&auml;, pippurikastike, valkosipulivoita, ranskalaiset perunat.</p>
+          </div>
+          <span class="menu-item-price">29 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Vuohenjuustoburgeri <span class="menu-category-label">L</span></p>
+            <p class="menu-item-desc">Mehev&auml; pihvi, paistettua vuohenjuustoa, tomaatti, salaatti ja erikoiskastike. Ranskalaiset perunat.</p>
+          </div>
+          <span class="menu-item-price">36 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Kasvispihvi <span class="menu-category-label">VL G</span></p>
+            <p class="menu-item-desc">Kasvispihvi, feta, tomaatti, rucola ja yrttijogurttikas&shy;tike.</p>
+          </div>
+          <span class="menu-item-price">17 &euro;</span>
+        </div>
+        <p style="font-size:.8rem;opacity:.6;margin-top:16px;">G = gluteeniton &middot; L = laktoositon &middot; VL = vegaani/kasvis</p>
       </div>
     </div>
   </section>
 
-  <!-- Yksityistilaisuudet -->
-  <section class="section reveal" id="yksityistilaisuudet">
+  <!-- Lapulle -->
+  <section class="section reveal light" id="lapulle">
     <div class="container">
-      <h2>Yksityistilaisuudet</h2>
-      <div class="grid-3">
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/11062b_95d34f15761e4114a57b17823228948ef000.jpg/v1/fill/w_600,h_400,al_c,q_85,usm_0.33_1.00_0.00/11062b_95d34f15761e4114a57b17823228948ef000.jpg" alt="Ateria">
-          <h3>Hienostunut alkuruoka</h3>
-          <p>Skummitettu merenelävä, sitruunavoi ja krutoni.</p>
-          <p class="text"><strong>Hinta: €8,90 / henkilö</strong></p>
-        </article>
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg/v1/fill/w_600,h_400,al_b,q_85,usm_0.33_1.00_0.00/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg" alt="Pääruoka">
-          <h3>Ylellinen pääruoka</h3>
-          <p>Paistettu entrecôte, truffeliperunat, punaviinikastike.</p>
-          <p class="text"><strong>Hinta: €27,90 / henkilö</strong></p>
-        </article>
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/bdd1a3_d1b7149ac6864934a373090408dc41ca~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,usm_0.33_1.00_0.00/bdd1a3_d1b7149ac6864934a373090408dc41ca~mv2.jpg" alt="Jälkiruoka">
-          <h3>Makea päätös</h3>
-          <p>Juustokakku, marjasaippaus ja kermainen vaniljakastike.</p>
-          <p class="text"><strong>Hinta: €9,50 / henkilö</strong></p>
-        </article>
+      <div class="menu-section">
+        <h2>Lapulle</h2>
+        <p style="opacity:.7;margin-bottom:24px;">Lasten menu alle 12-vuotiaille.</p>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Nauravat Nakit <span class="menu-category-label">G L</span></p>
+            <p class="menu-item-desc">Nakkeja, ranskalaiset perunat ja ketsuppi.</p>
+          </div>
+          <span class="menu-item-price">5 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Pikkukipparin Kanakori <span class="menu-category-label">L</span></p>
+            <p class="menu-item-desc">Kananuggetteja, ranskalaiset perunat, dippi-kastike.</p>
+          </div>
+          <span class="menu-item-price">9 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Leppoisa Leistipihvi <span class="menu-category-label">G L</span></p>
+            <p class="menu-item-desc">Pieni leistipihvi, perunat ja ketsuppi.</p>
+          </div>
+          <span class="menu-item-price">10 &euro;</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Telakkavierailut -->
-  <section class="section reveal" id="telakkavierailut">
+  <!-- J&auml;lkiruuat -->
+  <section class="section reveal" id="jalkiruuat">
     <div class="container">
-      <h2>Telakkavierailut</h2>
-      <div class="grid-3">
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/11062b_95d34f15761e4114a57b17823228948ef000.jpg/v1/fill/w_600,h_400,al_t,q_85,usm_0.33_1.00_0.00/11062b_95d34f15761e4114a57b17823228948ef000.jpg" alt="Ateria">
-          <h3>Ravintola laivalla – alkuruoka</h3>
-          <p>Skummitettu simpukka, valkoviini, tilli ja sitruunavoita.</p>
-          <p class="text"><strong>Hinta: €10,90 / henkilö</strong></p>
-        </article>
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg/v1/fill/w_300,h_300,al_c,q_85,usm_0.33_1.00_0.00/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg" alt="Pääruoka">
-          <h3>Ravintola laivalla – pääruoka</h3>
-          <p>Paahdettu turska, perunamuusi, paahdetut vihannekset ja beurre blanc.</p>
-          <p class="text"><strong>Hinta: €22,90 / henkilö</strong></p>
-        </article>
-        <article class="card">
-          <img src="https://static.wixstatic.com/media/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg/v1/fill/w_1600,h_900,al_c,q_85,usm_0.33_1.00_0.00/bdd1a3_889c4f84cdec4341a031c308a99626ff~mv2.jpg" alt="Jälkiruoka">
-          <h3>Ravintola laivalla – jälkiruoka</h3>
-          <p>Marjainen sorbetti, lime ja tuore minttu.</p>
-          <p class="text"><strong>Hinta: €8,50 / henkilö</strong></p>
-        </article>
+      <div class="menu-section">
+        <h2>J&auml;lkiruuat</h2>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">J&auml;&auml;tel&ouml;annos <span class="menu-category-label">G L</span></p>
+            <p class="menu-item-desc">Valikoima j&auml;&auml;tel&ouml;palloja: vanilja, mansikka, suklaa.</p>
+          </div>
+          <span class="menu-item-price">7 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Sorbetti <span class="menu-category-label">VL G</span></p>
+            <p class="menu-item-desc">Marjainen sorbetti, tuore minttu.</p>
+          </div>
+          <span class="menu-item-price">5 &euro;</span>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-info">
+            <p class="menu-item-name">Suklaakarva <span class="menu-category-label">L</span></p>
+            <p class="menu-item-desc">Suklaakakku, vaniljakastike ja tuoreet marjat.</p>
+          </div>
+          <span class="menu-item-price">12 &euro;</span>
+        </div>
+        <div style="border-top: 1px solid rgba(201,168,76,.2); margin-top: 24px; padding-top: 24px;">
+          <p style="font-size:.85rem;font-weight:700;opacity:.6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;">J&auml;lkiruokakahvit</p>
+          <div class="menu-cols">
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Irish Coffee</p></div>
+              <span class="menu-item-price">10,50 &euro;</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Captain Coffee</p></div>
+              <span class="menu-item-price">11,00 &euro;</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Dom Coffee</p></div>
+              <span class="menu-item-price">12,00 &euro;</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Xante Kaakao</p></div>
+              <span class="menu-item-price">12,50 &euro;</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Juomat -->
+  <section class="section reveal light" id="juomat">
+    <div class="container">
+      <div class="menu-section">
+        <h2>Juomat</h2>
+        <div class="menu-cols">
+          <div>
+            <p style="font-size:.85rem;font-weight:700;opacity:.6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;">Oluet &amp; Siiderit</p>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Hanaolut</p><p class="menu-item-desc">0,4 l / 0,5 l</p></div>
+              <span class="menu-item-price">6,50&ndash;8 &euro;</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Lonkero</p></div>
+              <span class="menu-item-price">6 &euro;</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Happy Joe siideri</p></div>
+              <span class="menu-item-price">6 &euro;</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Alkoholiton olut / siideri</p></div>
+              <span class="menu-item-price">6 &euro;</span>
+            </div>
+          </div>
+          <div>
+            <p style="font-size:.85rem;font-weight:700;opacity:.6;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;">Viinit &amp; Muut</p>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Talon viini</p><p class="menu-item-desc">Lasillinen</p></div>
+              <span class="menu-item-price">8,90 &euro;</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Talon viini</p><p class="menu-item-desc">Pullo</p></div>
+              <span class="menu-item-price">35 &euro;</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Virvoitusjuomat</p></div>
+              <span class="menu-item-price">3,50 &euro;</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">J&auml;&auml;vesi</p></div>
+              <span class="menu-item-price">3,50 &euro;</span>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-info"><p class="menu-item-name">Kahvi / Tee</p></div>
+              <span class="menu-item-price">3 &euro;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- CTA Reservation -->
   <section class="section dark">
     <div class="container">
