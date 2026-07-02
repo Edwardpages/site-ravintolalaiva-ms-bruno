@@ -1,241 +1,200 @@
-/* ==== Utility Functions ==== */
-const on = (el, ev, fn) => el.addEventListener(ev, fn);
-const qs = (s, p = document) => p.querySelector(s);
-const qsa = (s, p = document) => Array.from(p.querySelectorAll(s));
-
-/* ==== 1. IntersectionObserver for .reveal ==== */
-(() => {
-    const revealElems = qsa('.reveal');
-    if (!revealElems.length) return;
-
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                const delay = el.dataset.delay || 0;
-                setTimeout(() => el.classList.add('visible'), delay);
-                obs.unobserve(el);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    // Staggered delay based on order if not manually set
-    revealElems.forEach((el, i) => {
-        if (!el.dataset.delay) el.dataset.delay = i * 100; // 100ms step
-        observer.observe(el);
-    });
-})();
-
-/* ==== 2. Navbar behavior (shrink, blur, hide on scroll) ==== */
-(() => {
-    const header = qs('.glass-nav');
-    if (!header) return;
-
-    let lastScroll = 0;
-    const hideThreshold = 80; // px after which shrink/blur applies
-
-    const onScroll = () => {
-        const curScroll = window.scrollY;
-
-        // Shrink & blur after threshold
-        if (curScroll > hideThreshold) {
-            header.classList.add('shrink');
-        } else {
-            header.classList.remove('shrink');
-        }
-
-        // Hide on scroll down, show on scroll up
-        if (curScroll > lastScroll && curScroll > hideThreshold) {
-            header.classList.add('hide');
-        } else {
-            header.classList.remove('hide');
-        }
-        lastScroll = curScroll <= 0 ? 0 : curScroll;
-    };
-
-    on(window, 'scroll', onScroll);
-})();
-
-/* ==== 3. Hamburger menu toggle ==== */
-(() => {
-    const hamburger = qs('.hamburger');
-    const navLinks = qs('.nav-links');
-    if (!hamburger || !navLinks) return;
-
-    on(hamburger, 'click', () => {
-        hamburger.classList.toggle('open');
-        navLinks.classList.toggle('open');
-    });
-})();
-
-/* ==== 4. Stat counters (count-up) ==== */
-(() => {
-    const counters = qsa('.stat-number');
-    if (!counters.length) return;
-
-    const animateCount = (el, target, duration = 2000) => {
-        const start = 0;
-        const startTime = performance.now();
-
-        const step = (now) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const value = Math.floor(progress * target);
-            el.textContent = value;
-            if (progress < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-    };
-
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                const target = parseInt(el.dataset.target, 10) || 0;
-                animateCount(el, target);
-                obs.unobserve(el);
-            }
-        });
-    }, { threshold: 0.6 });
-
-    counters.forEach(el => {
-        // Expect data-target attribute with final number
-        if (!el.dataset.target) el.dataset.target = el.textContent.trim();
-        observer.observe(el);
-    });
-})();
-
-/* ==== 5. Gallery Lightbox ==== */
-(() => {
-    const galleryItems = qsa('.gallery-item');
-    if (!galleryItems.length) return;
-
-    // Create lightbox elements
-    const overlay = document.createElement('div');
-    overlay.className = 'lightbox-overlay';
-    overlay.innerHTML = `
-        <button class="lightbox-close" aria-label="Close">&times;</button>
-        <button class="lightbox-prev" aria-label="Previous">&#10094;</button>
-        <img class="lightbox-image" src="" alt="">
-        <button class="lightbox-next" aria-label="Next">&#10095;</button>
-    `;
-    document.body.appendChild(overlay);
-
-    const imgEl = qs('.lightbox-image', overlay);
-    const closeBtn = qs('.lightbox-close', overlay);
-    const prevBtn = qs('.lightbox-prev', overlay);
-    const nextBtn = qs('.lightbox-next', overlay);
-
-    let currentIndex = -1;
-    const sources = galleryItems.map(item => {
-        const img = qs('img', item);
-        return img ? img.src : '';
-    });
-
-    const openLightbox = (index) => {
-        if (index < 0 || index >= sources.length) return;
-        currentIndex = index;
-        imgEl.src = sources[index];
-        overlay.classList.add('open');
-    };
-
-    const closeLightbox = () => {
-        overlay.classList.remove('open');
-    };
-
-    const showPrev = () => {
-        openLightbox((currentIndex - 1 + sources.length) % sources.length);
-    };
-    const showNext = () => {
-        openLightbox((currentIndex + 1) % sources.length);
-    };
-
-    galleryItems.forEach((item, idx) => {
-        on(item, 'click', (e) => {
-            e.preventDefault();
-            openLightbox(idx);
-        });
-    });
-
-    on(closeBtn, 'click', closeLightbox);
-    on(prevBtn, 'click', showPrev);
-    on(nextBtn, 'click', showNext);
-    on(overlay, 'click', (e) => {
-        if (e.target === overlay) closeLightbox();
-    });
-
-    // Keyboard navigation
-    on(document, 'keydown', (e) => {
-        if (!overlay.classList.contains('open')) return;
-        if (e.key === 'Escape') closeLightbox();
-        else if (e.key === 'ArrowLeft') showPrev();
-        else if (e.key === 'ArrowRight') showNext();
-    });
-})();
-
-/* ==== 6. Form validation + success message ==== */
-(() => {
-    const form = qs('section#contact form');
-    if (!form) return;
-
-    const showMessage = (msg) => {
-        const msgEl = document.createElement('div');
-        msgEl.className = 'form-success fade-in';
-        msgEl.textContent = msg;
-        form.parentNode.insertBefore(msgEl, form);
-        setTimeout(() => msgEl.classList.add('visible'), 10);
-        // Remove after 5s
-        setTimeout(() => {
-            msgEl.classList.remove('visible');
-            setTimeout(() => msgEl.remove(), 500);
-        }, 5000);
-    };
-
-    const validate = () => {
-        const name = qs('#name', form);
-        const email = qs('#email', form);
-        const phone = qs('#phone', form);
-        let valid = true;
-
-        // Simple validation
-        if (!name.value.trim()) { valid = false; name.classList.add('error'); }
-        else name.classList.remove('error');
-
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailPattern.test(email.value.trim())) { valid = false; email.classList.add('error'); }
-        else email.classList.remove('error');
-
-        if (!phone.value.trim()) { valid = false; phone.classList.add('error'); }
-        else phone.classList.remove('error');
-
-        return valid;
-    };
-
-    on(form, 'submit', (e) => {
-        e.preventDefault();
-        if (validate()) {
-            // Simulate async submission
-            setTimeout(() => {
-                form.reset();
-                showMessage('Kiitos viestistäsi! Otamme yhteyttä pian.');
-            }, 300);
-        }
-    });
-})();
-
-/* ==== 7. Smooth scrolling for internal links ==== */
-(() => {
-    const internalLinks = qsa('a[href^="#"]');
-    internalLinks.forEach(link => {
-        on(link, 'click', (e) => {
-            const targetId = link.getAttribute('href').slice(1);
+document.addEventListener('DOMContentLoaded', () => {
+    /* ---------- Smooth Scrolling ---------- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', e => {
+            const targetId = anchor.getAttribute('href').slice(1);
             const targetEl = document.getElementById(targetId);
             if (targetEl) {
                 e.preventDefault();
                 targetEl.scrollIntoView({ behavior: 'smooth' });
-                // Update URL hash without jumping
-                history.pushState(null, '', `#${targetId}`);
             }
         });
     });
-})();
+
+    /* ---------- Navbar Shrink & Hide on Scroll ---------- */
+    const nav = document.querySelector('.glass-nav');
+    let lastScroll = 0;
+    const scrollHandler = () => {
+        const curScroll = window.scrollY;
+        // shrink & backdrop blur
+        if (curScroll > 80) {
+            nav.classList.add('shrink');
+        } else {
+            nav.classList.remove('shrink');
+        }
+        // hide on scroll down, show on scroll up
+        if (curScroll > lastScroll && curScroll > 100) {
+            nav.classList.add('hidden');
+        } else {
+            nav.classList.remove('hidden');
+        }
+        lastScroll = curScroll;
+    };
+    window.addEventListener('scroll', scrollHandler);
+
+    /* ---------- Hamburger Menu Toggle ---------- */
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+    }
+
+    /* ---------- Reveal on Scroll (IntersectionObserver) ---------- */
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const index = Array.from(revealElements).indexOf(el);
+                const delay = index * 100; // 100ms per element
+                setTimeout(() => el.classList.add('visible'), delay);
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    /* ---------- Stat Counters ---------- */
+    const statNumbers = document.querySelectorAll('.stat-number');
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.dataset.target || el.textContent, 10) || 0;
+                const duration = 2000;
+                const start = performance.now();
+                const startVal = 0;
+                const step = (now) => {
+                    const progress = Math.min((now - start) / duration, 1);
+                    el.textContent = Math.floor(progress * (target - startVal) + startVal);
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        el.textContent = target;
+                    }
+                };
+                requestAnimationFrame(step);
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.6 });
+    statNumbers.forEach(el => counterObserver.observe(el));
+
+    /* ---------- Gallery Lightbox ---------- */
+    const galleryImgs = Array.from(document.querySelectorAll('#galleria .grid-3 img'));
+    if (galleryImgs.length) {
+        const overlay = document.createElement('div');
+        overlay.id = 'lightbox-overlay';
+        overlay.style.cssText = `
+            position:fixed;top:0;left:0;width:100vw;height:100vh;
+            background:rgba(0,0,0,0.9);display:flex;align-items:center;
+            justify-content:center;z-index:1000;opacity:0;pointer-events:none;
+            transition:opacity .3s ease;
+        `;
+        const img = document.createElement('img');
+        img.style.maxWidth = '90%';
+        img.style.maxHeight = '90%';
+        overlay.appendChild(img);
+
+        const closeBtn = document.createElement('button');
+        closeBtn.textContent = '✕';
+        closeBtn.style.cssText = `
+            position:absolute;top:20px;right:20px;font-size:2rem;
+            background:none;border:none;color:#fff;cursor:pointer;
+        `;
+        overlay.appendChild(closeBtn);
+
+        const prevBtn = document.createElement('button');
+        prevBtn.textContent = '←';
+        prevBtn.style.cssText = `
+            position:absolute;left:20px;top:50%;transform:translateY(-50%);
+            font-size:2rem;background:none;border:none;color:#fff;cursor:pointer;
+        `;
+        overlay.appendChild(prevBtn);
+
+        const nextBtn = document.createElement('button');
+        nextBtn.textContent = '→';
+        nextBtn.style.cssText = `
+            position:absolute;right:20px;top:50%;transform:translateY(-50%);
+            font-size:2rem;background:none;border:none;color:#fff;cursor:pointer;
+        `;
+        overlay.appendChild(nextBtn);
+
+        document.body.appendChild(overlay);
+
+        let currentIdx = 0;
+        const openLightbox = (idx) => {
+            currentIdx = idx;
+            img.src = galleryImgs[currentIdx].src;
+            overlay.style.opacity = '1';
+            overlay.style.pointerEvents = 'auto';
+        };
+        const closeLightbox = () => {
+            overlay.style.opacity = '0';
+            overlay.style.pointerEvents = 'none';
+        };
+        const showPrev = () => {
+            currentIdx = (currentIdx - 1 + galleryImgs.length) % galleryImgs.length;
+            img.src = galleryImgs[currentIdx].src;
+        };
+        const showNext = () => {
+            currentIdx = (currentIdx + 1) % galleryImgs.length;
+            img.src = galleryImgs[currentIdx].src;
+        };
+
+        galleryImgs.forEach((image, i) => {
+            image.style.cursor = 'pointer';
+            image.addEventListener('click', () => openLightbox(i));
+        });
+        closeBtn.addEventListener('click', closeLightbox);
+        prevBtn.addEventListener('click', showPrev);
+        nextBtn.addEventListener('click', showNext);
+        overlay.addEventListener('click', e => {
+            if (e.target === overlay) closeLightbox();
+        });
+        document.addEventListener('keydown', e => {
+            if (overlay.style.pointerEvents === 'auto') {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showPrev();
+                if (e.key === 'ArrowRight') showNext();
+            }
+        });
+    }
+
+    /* ---------- Form Validation & Success Message ---------- */
+    const form = document.querySelector('form#contact-form');
+    if (form) {
+        const successMsg = document.createElement('div');
+        successMsg.className = 'success-message';
+        successMsg.textContent = 'Kiitos! Viestisi on lähetetty.';
+        successMsg.style.cssText = `
+            opacity:0;transition:opacity .5s ease;
+            background:var(--surface);color:var(--text);
+            padding:1rem;margin-top:1rem;border-radius:var(--radius);
+        `;
+        form.parentNode.insertBefore(successMsg, form.nextSibling);
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            let valid = true;
+            form.querySelectorAll('input, textarea').forEach(inp => {
+                if (inp.hasAttribute('required') && !inp.value.trim()) {
+                    valid = false;
+                    inp.classList.add('error');
+                } else {
+                    inp.classList.remove('error');
+                }
+            });
+            if (valid) {
+                // simulate async submission
+                setTimeout(() => {
+                    successMsg.style.opacity = '1';
+                    form.reset();
+                }, 300);
+            }
+        });
+    }
+});
