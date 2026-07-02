@@ -1,24 +1,36 @@
 {
   "name": "Ravintolalaiva m/s Bruno",
-  "type": "Restaurant",
-  "tagline": "",
-  "description": "",
-  "services": [],
-  "primary_color": "#2563eb",
-  "secondary_color": "#1e40af",
-  "accent_color": "#f59e0b",
-  "phone": "02 536 6539",
+  "type": "Boat Restaurant",
+  "tagline": "Merellinen ravintola joen rannalla",
+  "description": "Ravintolalaiva m/s Bruno on ainutlaatuinen laivaravintola Raisiossa Hahdenniemen venesatamassa. Brunon kannella voit seurata risteilijöiden rakentamista Meyerin telakalla nauttien herkullisesta ruoasta ja juomasta. Tervetuloa merelliseen ympäristöön!",
+  "services": [
+    "Lounas",
+    "Illallinen",
+    "Brunssi",
+    "Yksityistilaisuudet",
+    "Telakkavierailut"
+  ],
+  "primary_color": "#0a1628",
+  "secondary_color": "#1a3a5c",
+  "accent_color": "#c9a84c",
+  "phone": "025366539",
   "email": "",
   "address": "Hahdenniementie, Raisio",
   "city": "Raisio",
   "founded_year": "",
   "owner_name": "",
-  "logo_text": "",
-  "extra_notes": "",
+  "logo_text": "m/s Bruno",
+  "extra_notes": "BOAT restaurant on a ship — nautical/maritime atmosphere, view of Meyer Turku shipyard where cruise ships are built. Design: deep navy (#0a1628) background, white text, brass/gold (#c9a84c) accents, subtle rope/anchor motifs. Hero must use bruno_boat2.jpg as full-width background image. TWO locations: Bruno II in Turku next to Föri ferry, Bruno in Raisio at Hahdenniemi marina. Outdoor deck seating. Summer dining destination. Unique view of cruise ship construction.",
   "client_notes": "",
-  "style_preset": "",
-  "site_features": [],
+  "style_preset": "bold",
+  "site_features": [
+    "Photo Gallery",
+    "Map & Directions",
+    "Opening Hours"
+  ],
   "site_language": "Finnish",
-  "inspiration_urls": [],
-  "generated_at": "2026-07-02T09:36:01.163455Z"
+  "inspiration_urls": [
+    "https://www.brunot.fi/"
+  ],
+  "generated_at": "2026-07-02T10:33:06.693830Z"
 }
